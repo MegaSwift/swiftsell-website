@@ -4,7 +4,6 @@
     <Product />
     <Benefits />
     <Pricing />
-    <Faq />
     <Potential />
   </section>
 </template>

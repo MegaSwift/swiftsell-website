@@ -703,6 +703,7 @@ section {
   // pricing styles
   &.pricing {
     margin-top: 73px;
+    margin-bottom: 73px;
     .contentWrapper {
       display: flex;
       align-items: center;
@@ -821,7 +822,7 @@ section {
   }
   // faq styles
   &.faq {
-    margin-block: 122px 32px;
+    margin-block: 0px 32px;
     .contentWrapper {
       background-color: var(--cardColor1);
       border-radius: 16px;

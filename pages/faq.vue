@@ -1,8 +1,6 @@
 <template>
   <section class="pageContent">
-    <AboutHero />
-    <Overview />
-    <Pricing />
+    <Faq />
     <Potential />
   </section>
 </template>

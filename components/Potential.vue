@@ -16,6 +16,7 @@
             width="169"
             elevation="0"
             class="Btn"
+            onclick="location.href='https://swiftsell-app.vercel.app'"
           >
             <span>Get Started</span>
             <svg

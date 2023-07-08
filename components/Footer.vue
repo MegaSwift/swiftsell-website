@@ -51,8 +51,8 @@
                 <span>For Business Enquires</span>
               </li>
               <li>
-                <a href="mailto:swiftsell@managment.com"
-                  >Swiftsell@managment.com</a
+                <a href="mailto:megaswft01@gmail.com"
+                  >megaswft01@gmail.com</a
                 >
               </li>
               <!-- social links  -->
