@@ -43,116 +43,121 @@
               </v-tabs-items>
             </div>
             <div class="tabContents">
-              <v-tabs-items
-                style="width: 100%; background: transparent"
-                v-model="tab"
-              >
-                <v-tab-item v-for="(item, id) in products" :key="id + 22211112">
-                  <div>
-                    <!-- title  -->
-                    <div class="flexGap">
-                      <div class="d-flex align-center justify-center h-100">
-                        <svg
-                          width="24"
-                          height="25"
-                          viewBox="0 0 24 25"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            opacity="0.4"
-                            d="M18.5 13.15V16.85C18.5 19.97 15.59 22.5 12 22.5C8.41 22.5 5.5 19.97 5.5 16.85V13.15C5.5 16.27 8.41 18.5 12 18.5C15.59 18.5 18.5 16.27 18.5 13.15Z"
-                            stroke="#4169E1"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M18.5 8.15C18.5 9.06 18.25 9.9 17.81 10.62C16.74 12.38 14.54 13.5 12 13.5C9.46 13.5 7.26 12.38 6.19 10.62C5.75 9.9 5.5 9.06 5.5 8.15C5.5 6.59 6.22999 5.18 7.39999 4.16C8.57999 3.13 10.2 2.5 12 2.5C13.8 2.5 15.42 3.13 16.6 4.15C17.77 5.18 18.5 6.59 18.5 8.15Z"
-                            stroke="#4169E1"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M18.5 8.15V13.15C18.5 16.27 15.59 18.5 12 18.5C8.41 18.5 5.5 16.27 5.5 13.15V8.15C5.5 5.03 8.41 2.5 12 2.5C13.8 2.5 15.42 3.13 16.6 4.15C17.77 5.18 18.5 6.59 18.5 8.15Z"
-                            stroke="#4169E1"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                      <h3>{{ item.title }}</h3>
-                    </div>
-                    <!-- list  -->
-                    <ul>
-                      <li
-                        v-for="(items, index) in item.list"
-                        :key="index + 231"
-                      >
-                        <div class="d-flex align-center">
+              <transition name="fade" mode="out-in">
+                <v-tabs-items
+                  style="width: 100%; background: transparent"
+                  v-model="tab"
+                >
+                  <v-tab-item
+                    v-for="(item, id) in products"
+                    :key="id + 22211112"
+                  >
+                    <div>
+                      <!-- title  -->
+                      <div class="flexGap">
+                        <div class="d-flex align-center justify-center h-100">
                           <svg
                             width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
+                            height="25"
+                            viewBox="0 0 24 25"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                              stroke="#219653"
+                              opacity="0.4"
+                              d="M18.5 13.15V16.85C18.5 19.97 15.59 22.5 12 22.5C8.41 22.5 5.5 19.97 5.5 16.85V13.15C5.5 16.27 8.41 18.5 12 18.5C15.59 18.5 18.5 16.27 18.5 13.15Z"
+                              stroke="#4169E1"
                               stroke-width="1.5"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                             />
                             <path
-                              opacity="0.34"
-                              d="M7.75 12L10.58 14.83L16.25 9.17004"
-                              stroke="#219653"
+                              d="M18.5 8.15C18.5 9.06 18.25 9.9 17.81 10.62C16.74 12.38 14.54 13.5 12 13.5C9.46 13.5 7.26 12.38 6.19 10.62C5.75 9.9 5.5 9.06 5.5 8.15C5.5 6.59 6.22999 5.18 7.39999 4.16C8.57999 3.13 10.2 2.5 12 2.5C13.8 2.5 15.42 3.13 16.6 4.15C17.77 5.18 18.5 6.59 18.5 8.15Z"
+                              stroke="#4169E1"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M18.5 8.15V13.15C18.5 16.27 15.59 18.5 12 18.5C8.41 18.5 5.5 16.27 5.5 13.15V8.15C5.5 5.03 8.41 2.5 12 2.5C13.8 2.5 15.42 3.13 16.6 4.15C17.77 5.18 18.5 6.59 18.5 8.15Z"
+                              stroke="#4169E1"
                               stroke-width="1.5"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                             />
                           </svg>
                         </div>
-                        <span>{{ items }}</span>
-                      </li>
-                    </ul>
-                    <!-- button  -->
-                    <v-btn
-                      color="var(--primaryColor)"
-                      height="48"
-                      elevation="0"
-                      class="Btn"
-                    >
-                      <span>Get Started</span>
-                      <svg
-                        width="16"
-                        height="17"
-                        viewBox="0 0 16 17"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        <h3>{{ item.title }}</h3>
+                      </div>
+                      <!-- list  -->
+                      <ul>
+                        <li
+                          v-for="(items, index) in item.list"
+                          :key="index + 231"
+                        >
+                          <div class="d-flex align-center">
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                                stroke="#219653"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                opacity="0.34"
+                                d="M7.75 12L10.58 14.83L16.25 9.17004"
+                                stroke="#219653"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <span>{{ items }}</span>
+                        </li>
+                      </ul>
+                      <!-- button  -->
+                      <v-btn
+                        color="var(--primaryColor)"
+                        height="48"
+                        elevation="0"
+                        class="Btn"
                       >
-                        <path
-                          d="M3.33331 8.5H12.6666"
-                          stroke="#fff"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M8 3.83325L12.6667 8.49992L8 13.1666"
-                          stroke="#fff"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </v-btn>
-                  </div>
-                </v-tab-item>
-              </v-tabs-items>
+                        <span>Get Started</span>
+                        <svg
+                          width="16"
+                          height="17"
+                          viewBox="0 0 16 17"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.33331 8.5H12.6666"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M8 3.83325L12.6667 8.49992L8 13.1666"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </v-btn>
+                    </div>
+                  </v-tab-item>
+                </v-tabs-items>
+              </transition>
             </div>
           </div>
           <!-- tab controls -->
@@ -279,6 +284,7 @@ export default {
       ],
     };
   },
+
   methods: {
     mobileNextNav() {
       if (this.tab < 2) {
@@ -294,8 +300,25 @@ export default {
       return;
     },
   },
+  mounted() {
+    setInterval(() => {
+      this.tab = this.tab += 1;
+      if (this.tab >= this.products.length) {
+        this.tab = 0;
+      }
+    }, 4000);
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  background: yellow;
+}
 </style>
