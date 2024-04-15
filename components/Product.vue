@@ -314,11 +314,10 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 3s;
+  transition: opacity 1s;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  background: yellow;
 }
 </style>
