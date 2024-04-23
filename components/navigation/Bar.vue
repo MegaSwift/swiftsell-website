@@ -22,7 +22,7 @@
           <nav>
             <ul class="flexGap">
               <li><nuxt-link to="/about">About</nuxt-link></li>
-              <li><nuxt-link to="#pricing">Pricing</nuxt-link></li>
+              <li><nuxt-link to="/pricing">Pricing</nuxt-link></li>
               <li><nuxt-link to="/faq">FAQ</nuxt-link></li>
             </ul>
           </nav>
@@ -77,8 +77,18 @@
                     <nuxt-link to="/faq">FAQ</nuxt-link>
                   </li>
                   <li class="btn-group">
-                    <button class="w-100" onclick="location.href='https://swiftsell-app.vercel.app'">Login</button>
-                    <button class="w-100 mt-4" onclick="location.href='https://swiftsell-app.vercel.app'">Sign-up For Free</button>
+                    <button
+                      class="w-100"
+                      onclick="location.href='https://swiftsell-app.vercel.app'"
+                    >
+                      Login
+                    </button>
+                    <button
+                      class="w-100 mt-4"
+                      onclick="location.href='https://swiftsell-app.vercel.app'"
+                    >
+                      Sign-up For Free
+                    </button>
                   </li>
                 </ul>
               </v-card>

@@ -86,7 +86,7 @@
             <span>
               If you have any questions or concerns about our Privacy Policy or
               the handling of your personal information, please contact us at
-              <a href="mailto:megaswft01@gmail.com">megaswft01@gmail.com</a>.
+              <a href="mailto:infogetswiftwell.com">infogetswiftwell.com</a>.
             </span>
           </li>
         </ol>
@@ -106,5 +106,4 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
