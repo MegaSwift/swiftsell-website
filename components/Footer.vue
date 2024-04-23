@@ -51,9 +51,7 @@
                 <span>For Business Enquires</span>
               </li>
               <li>
-                <a href="mailto:megaswft01@gmail.com"
-                  >megaswft01@gmail.com</a
-                >
+                <a href="mailto:infogetswiftwell.com">infogetswiftwell.com</a>
               </li>
               <!-- social links  -->
               <li class="flexGap footerSocial">
@@ -142,5 +140,4 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
