@@ -165,6 +165,40 @@ export default function Navigation() {
                     Contact
                   </span>
                 </Link>
+                <Link
+                  to="/faq"
+                  style={{
+                    color: currentPath === "/faq" ? "#0077F7" : "#636363",
+                    fontFamily: "Poppins",
+                    fontSize: "16px",
+                    fontWeight: currentPath === "/faq" ? "500" : "400",
+                    lineHeight: "38.323px",
+                    textDecoration: "none",
+                    position: "relative",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (currentPath !== "/faq") {
+                      (e.target as HTMLElement).style.color = "#0077F7";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (currentPath !== "/faq") {
+                      (e.target as HTMLElement).style.color = "rgba(99,99,99,1)";
+                    }
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily:
+                        "Poppins, -apple-system, Roboto, Helvetica, sans-serif",
+                      fontWeight: "inherit",
+                      fontSize: "16px",
+                      color: "inherit",
+                    }}
+                  >
+                    FAQ
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
@@ -260,6 +294,14 @@ export default function Navigation() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
+              </Link>
+              <Link
+                to="/faq"
+                className="text-lg font-medium"
+                style={{ color: currentPath === "/faq" ? "#0077F7" : "#636363" }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                FAQ
               </Link>
               <div className="flex flex-col gap-4">
                 <button

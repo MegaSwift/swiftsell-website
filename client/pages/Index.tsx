@@ -259,7 +259,7 @@ export default function Index() {
             </div>
 
             {/* Real-time Stock Tracking */}
-            <div className="bg-gradient-to-b from-blue-50 to-blue-100/30 border border-blue-100 rounded-lg p-6 relative overflow-hidden">
+            <div className="bg-gradient-to-b from-blue-50 to-blue-100/30 border border-blue-100 rounded-lg p-6 relative overflow-hidden h-80 lg:h-auto">
               <div className="flex items-start gap-3 mb-6 relative z-10">
                 <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
                   <Star className="w-4 h-4 text-yellow-600 fill-current" />
@@ -318,7 +318,7 @@ export default function Index() {
             </div>
 
             {/* Easy Setup */}
-            <div className="col-span-1 lg:col-span-2 bg-gradient-to-b from-blue-50 to-blue-100/30 border border-blue-100 rounded-lg p-6 relative overflow-hidden">
+            <div className="col-span-1 lg:col-span-2 bg-gradient-to-b from-blue-50 to-blue-100/30 border border-blue-100 rounded-lg p-6 relative overflow-hidden h-80 lg:h-auto">
               <div className="flex items-start gap-3 mb-6 relative z-10">
                 <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                   <Star className="w-4 h-4 text-green-600 fill-current" />

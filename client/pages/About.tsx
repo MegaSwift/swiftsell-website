@@ -198,7 +198,7 @@ export default function About() {
           </div>
 
           {/* Features Grid */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             {/* Feature 1 */}
             <div className="w-full sm:w-[321.975px] p-6 sm:p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
               <div className="flex items-start gap-3 w-full">
