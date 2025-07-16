@@ -67,6 +67,7 @@ export default function Index() {
                 <button
                   className="flex items-center justify-center gap-2 w-[194px] px-8 py-4 rounded-2xl font-medium text-base leading-[21px]"
                   style={{ backgroundColor: "#0053B4", color: "#FFF" }}
+                  onClick={() => window.location.href = 'https://app.getswiftsell.com'}
                 >
                   Try for free
                   <ArrowRight size={16} />

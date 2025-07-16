@@ -20,6 +20,7 @@ export default function CallToActionSection() {
         <button
           className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-medium flex items-center gap-2 mx-auto hover:bg-gray-50 transition-colors"
           style={{ fontFamily: "Poppins" }}
+          onClick={() => window.location.href = 'https://app.getswiftsell.com'}
         >
           Try for free
           <ArrowRight size={16} />
