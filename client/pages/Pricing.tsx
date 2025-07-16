@@ -1,16 +1,26 @@
+import React, { useState } from "react";
 import CallToActionSection from "@/components/CallToActionSection";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
+  const [isYearly, setIsYearly] = useState(false);
+
+  // Pricing values
+  const plans = {
+    free: { monthly: 0, yearly: 0 },
+    professional: { monthly: 25000, yearly: 250000 }, // Example: 2 months free on yearly
+    enterprise: { monthly: 100000, yearly: 1000000 }, // Example: 2 months free on yearly
+  };
+
   return (
     <div className="min-h-screen bg-white">
     
       {/* Hero Section */}
-      <div className="px-6 lg:px-[7px] mt-6 mb-16">
+      <div className="px-4 sm:px-6 lg:px-[7px] mt-6 mb-16">
         <div className="max-w-[1272px] mx-auto">
-          <div className="relative w-full bg-[#F3F8FF] rounded-[32px] border border-[#E6F1FE] px-10 py-[40px]">
+          <div className="relative w-full bg-[#F3F8FF] rounded-[32px] border border-[#E6F1FE] px-4 sm:px-10 py-[40px]">
 
             {/* Navigation */}
             <Navigation />
@@ -19,7 +29,7 @@ export default function Pricing() {
             <div className="max-w-[1138px] mx-auto flex flex-col items-center gap-4">
               {/* Header Section */}
               <div className="flex flex-col items-center gap-4 mb-[52px]">
-                <h1 className="w-[643.563px] text-center font-[Poppins] text-[62px] font-medium italic leading-[114%] tracking-[-3.72px]">
+                <h1 className="w-full max-w-xl text-center font-[Poppins] text-[36px] sm:text-[48px] md:text-[62px] font-medium italic leading-[114%] tracking-[-2px] md:tracking-[-3.72px]">
                   <span className="text-[#00234C]">Simple, </span>
                   <span className="text-[#0053B4]">Transparent </span>
                   <span className="text-[#00234C]">Pricing</span>
@@ -30,24 +40,39 @@ export default function Pricing() {
               </div>
 
               {/* Pricing Toggle */}
-              <div className="w-[1120px] flex flex-col items-center gap-10">
-                <div className="flex items-start justify-center gap-6 w-[566px] h-6">
-                  <span className="text-[#191D23] font-[Poppins] text-base">
-                    Pay Monthly
-                  </span>
-                  <div className="relative w-11 h-6">
-                    <div className="w-11 h-6 bg-[rgba(4,9,33,0.32)] rounded-xl"></div>
-                    <div className="absolute left-[2px] top-[2px] w-5 h-5 bg-white rounded-xl"></div>
+              <div className="w-full max-w-4xl flex flex-col items-center gap-10">
+                  {/* Responsive Pricing Toggle */}
+                  <div className="flex items-center justify-center gap-4 sm:gap-6 w-full max-w-md h-6 select-none">
+                    {/* Pay Monthly label - show on desktop, show if active on mobile */}
+                    <span
+                      className={`text-[#191D23] font-[Poppins] text-base cursor-pointer transition-all duration-200 ${!isYearly ? "font-bold" : "font-normal"} ${isYearly ? "hidden xs:block" : "block"}`}
+                      onClick={() => setIsYearly(false)}
+                    >
+                      Pay Monthly
+                    </span>
+                    {/* Toggle */}
+                    <div
+                      className="relative w-11 h-6 cursor-pointer"
+                      onClick={() => setIsYearly((prev) => !prev)}
+                    >
+                      <div className={`w-11 h-6 rounded-xl transition-colors duration-300 ${isYearly ? 'bg-[#0053B4]' : 'bg-[rgba(4,9,33,0.32)]'}`}></div>
+                      <div
+                        className={`absolute top-[2px] w-5 h-5 bg-white rounded-xl transition-all duration-300 ${isYearly ? "left-[24px]" : "left-[2px]"}`}
+                      ></div>
+                    </div>
+                    {/* Pay Yearly label - show on desktop, show if active on mobile */}
+                    <span
+                      className={`text-[#191D23] font-[Poppins] text-base cursor-pointer transition-all duration-200 ${isYearly ? "font-bold" : "font-normal"} ${!isYearly ? "hidden xs:block" : "block"}`}
+                      onClick={() => setIsYearly(true)}
+                    >
+                      Pay Yearly
+                    </span>
                   </div>
-                  <span className="text-[#191D23] font-[Poppins] text-base">
-                    Pay Yearly
-                  </span>
-                </div>
 
                 {/* Pricing Plans */}
-                <div className="flex items-start gap-4 h-[800px] w-full">
+                <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 md:h-[800px] w-auto">
                   {/* Freebie Plan */}
-                  <div className="flex-1 bg-white rounded p-10 flex flex-col gap-10 h-full">
+                  <div className="flex-1 min-w-0 basis-full sm:basis-1/2 bg-white rounded-xl p-8 sm:p-12 flex flex-col gap-10 h-full">
                     <div className="flex flex-col gap-5">
                       {/* Header */}
                       <div className="flex flex-col gap-[11px]">
@@ -64,10 +89,10 @@ export default function Pricing() {
                       <div className="flex flex-col gap-6">
                         <div className="flex items-center gap-1">
                           <span className="text-[#191D23] font-[Poppins] text-[56px] font-semibold">
-                            ₦0
+                            ₦{isYearly ? plans.free.yearly : plans.free.monthly}
                           </span>
                           <span className="text-[#4B5768] font-[Poppins] text-base font-light">
-                            / Month
+                            / {isYearly ? "Year" : "Month"}
                           </span>
                         </div>
                         <button className="flex items-center justify-center gap-2 h-11 px-8 py-4 bg-[#E6EEF8] rounded-lg w-full">
@@ -155,7 +180,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Professional Plan */}
-                  <div className="flex-1 bg-[#0077F7] rounded-xl shadow-[0px_10px_25px_0px_#CCD9FF] p-10 flex flex-col gap-10 h-full">
+                  <div className="flex-1 min-w-0 basis-full sm:basis-1/2 bg-[#0077F7] rounded-xl shadow-[0px_10px_25px_0px_#CCD9FF] p-8 sm:p-12 flex flex-col gap-10 h-full">
                     <div className="flex flex-col gap-5">
                       {/* Header */}
                       <div className="flex flex-col gap-[11px]">
@@ -172,10 +197,10 @@ export default function Pricing() {
                       <div className="flex flex-col gap-6">
                         <div className="flex items-center gap-1">
                           <span className="text-white font-[Poppins] text-[56px] font-semibold">
-                            ₦25,000
+                            ₦{isYearly ? plans.professional.yearly.toLocaleString() : plans.professional.monthly.toLocaleString()}
                           </span>
                           <span className="text-[#F7F8F9] font-[Poppins] text-base font-light">
-                            / Month
+                            / {isYearly ? "Year" : "Month"}
                           </span>
                         </div>
                         <button className="flex items-center justify-center gap-2 h-11 px-8 py-4 bg-[#FBFBFB] rounded-lg w-full">
@@ -251,7 +276,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Enterprise Plan */}
-                  <div className="flex-1 bg-white rounded p-10 flex flex-col gap-10 h-full">
+                  <div className="flex-1 min-w-0 basis-full sm:basis-1/2  bg-white rounded-xl p-8 sm:p-12 flex flex-col gap-10 h-full">
                     <div className="flex flex-col gap-5">
                       {/* Header */}
                       <div className="flex flex-col gap-[11px]">
@@ -268,10 +293,10 @@ export default function Pricing() {
                       <div className="flex flex-col gap-6">
                         <div className="flex items-center gap-1">
                           <span className="text-[#191D23] font-[Poppins] text-[56px] font-semibold">
-                            ₦100,000
+                            ₦{isYearly ? plans.enterprise.yearly.toLocaleString() : plans.enterprise.monthly.toLocaleString()}
                           </span>
                           <span className="text-[#4B5768] font-[Poppins] text-base font-light">
-                            / Month
+                            / {isYearly ? "Year" : "Month"}
                           </span>
                         </div>
                         <button className="flex items-center justify-center gap-2 h-11 px-8 py-4 bg-[#E6F1FE] rounded-lg w-full">

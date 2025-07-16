@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./Navigation";
+import '@testing-library/jest-dom';
 
 function PricingPage() {
   return <div>Pricing Page</div>;
@@ -23,8 +24,11 @@ describe("Navigation mobile menu", () => {
     fireEvent.click(hamburger);
 
     // The Pricing link should now be visible in the mobile menu
-    const pricingLink = screen.getByText(/pricing/i);
-    fireEvent.click(pricingLink);
+    const pricingLinks = screen.getAllByRole('link', { name: /pricing/i });
+    // Select the last one, which should be in the mobile menu
+    const mobilePricingLink = pricingLinks[pricingLinks.length - 1];
+    expect(mobilePricingLink).toBeTruthy();
+    fireEvent.click(mobilePricingLink);
 
     // The Pricing page should be rendered
     expect(screen.getByText(/pricing page/i)).toBeInTheDocument();

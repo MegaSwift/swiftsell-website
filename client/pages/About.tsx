@@ -2,72 +2,180 @@ import CallToActionSection from "@/components/CallToActionSection";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
 
       {/* Hero Section */}
-      <div className="px-6 lg:px-[7px] mt-6">
+      <div className="px-4 sm:px-6 lg:px-[7px] mt-6">
         <div className="max-w-[1272px] mx-auto">
-          <div className="relative w-full max-w-[1222px] mx-auto h-[616px] bg-[#F3F8FF] rounded-[32px] border border-[#E6F1FE] overflow-hidden">
+          <div className="relative w-full max-w-[1222px] mx-auto h-[650px] sm:h-[616px] bg-[#F3F8FF] rounded-[32px] border border-[#E6F1FE] overflow-hidden">
             {/* Navigation */}
             <Navigation />
             {/* Hero Content */}
-            <div className="absolute left-1/2 top-[153px] transform -translate-x-1/2 w-[544px] h-[159px] flex flex-col justify-center items-center gap-4">
-              <h1 className="text-center font-[Poppins] text-[62px] font-medium italic leading-[114%] tracking-[-3.72px]">
+            <div className="absolute left-1/2 top-[130px] sm:top-[153px] transform -translate-x-1/2 w-full max-w-[544px] h-auto flex flex-col justify-center items-center gap-4 px-2">
+              <h1 className="text-center font-[Poppins] text-[36px] sm:text-[62px] font-medium italic leading-[114%] tracking-[-2px] sm:tracking-[-3.72px]">
                 <span className="text-[#00234C]">Our</span>
                 <span className="text-[#0053B4]"> Mission</span>
               </h1>
-              <p className="w-[374.049px] text-center text-[#707275] font-[Poppins] text-base leading-[150%]">
+              <p className="w-full max-w-[374px] text-center text-[#707275] font-[Poppins] text-base leading-[150%]">
                 Swiftsell was built to help businesses stay in control of their
                 stock, orders, and growth — without complicated tools
               </p>
             </div>
 
             {/* Dashboard Images */}
-            <div className="absolute left-[-28px] top-[390px] flex items-center gap-5 w-auto h-auto">
+            {/* Mobile Carousel */}
+            <div className="absolute left-0 top-[300px] w-full sm:hidden flex flex-col items-center p-0 m-0">
+              {(() => {
+                const images = [
+                  {
+                    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/a9a0863038cb8e3c504cd651bc5daf238e47b774?width=911",
+                    alt: "Dashboard 1"
+                  },
+                  {
+                    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/1d8b68c11f2a46c485e1ccc8104a605e24105774?width=1038",
+                    alt: "Dashboard 2"
+                  },
+                  {
+                    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/36308863afe2c56dc6d6df37408bcdc58bed9655?width=911",
+                    alt: "Dashboard 3"
+                  },
+                  {
+                    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/a54023a1e8bec76f317ea5e90818cacf10d5f9a1?width=959",
+                    alt: "Dashboard 4"
+                  }
+                ];
+                const [current, setCurrent] = useState(0);
+                const [touchStart, setTouchStart] = useState(null);
+                const [touchEnd, setTouchEnd] = useState(null);
+                const [animating, setAnimating] = useState(false);
+                const [direction, setDirection] = useState(null); // 'left' or 'right'
+
+                const prev = () => {
+                  setDirection('right');
+                  setAnimating(true);
+                  setTimeout(() => {
+                    setCurrent((current - 1 + images.length) % images.length);
+                    setAnimating(false);
+                  }, 250);
+                };
+                const next = () => {
+                  setDirection('left');
+                  setAnimating(true);
+                  setTimeout(() => {
+                    setCurrent((current + 1) % images.length);
+                    setAnimating(false);
+                  }, 250);
+                };
+
+                // Swipe handlers
+                const minSwipeDistance = 40;
+                const onTouchStart = (e) => {
+                  setTouchEnd(null);
+                  setTouchStart(e.targetTouches[0].clientX);
+                };
+                const onTouchMove = (e) => {
+                  setTouchEnd(e.targetTouches[0].clientX);
+                };
+                const onTouchEnd = () => {
+                  if (!touchStart || touchEnd === null) return;
+                  const distance = touchStart - touchEnd;
+                  if (distance > minSwipeDistance) {
+                    next();
+                  } else if (distance < -minSwipeDistance) {
+                    prev();
+                  }
+                };
+
+                return (
+                  <div className="w-full flex flex-col items-center">
+                    <div
+                      className="relative w-full flex justify-center items-center h-[340px] sm:h-[248px] overflow-hidden"
+                      onTouchStart={onTouchStart}
+                      onTouchMove={onTouchMove}
+                      onTouchEnd={onTouchEnd}
+                    >
+                      <button
+                        aria-label="Previous image"
+                        onClick={prev}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md z-10"
+                      >
+                        <span className="sr-only">Previous</span>
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#003268" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </button>
+                      <img
+                        src={images[current].src}
+                        alt={images[current].alt}
+                        className={`w-full h-[340px] object-cover rounded-none shadow-lg border-0 transition-all duration-300 ease-in-out ${animating ? (direction === 'left' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0') : 'translate-x-0 opacity-100'}`}
+                        draggable={false}
+                      />
+                      <button
+                        aria-label="Next image"
+                        onClick={next}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md z-10"
+                      >
+                        <span className="sr-only">Next</span>
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#003268" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </button>
+                    </div>
+                    <div className="flex gap-2 mt-3">
+                      {images.map((_, idx) => (
+                        <button
+                          key={idx}
+                          className={`w-2.5 h-2.5 rounded-full ${idx === current ? 'bg-[#003268]' : 'bg-gray-300'}`}
+                          onClick={() => setCurrent(idx)}
+                          aria-label={`Go to image ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+            {/* Desktop Images Row */}
+            <div className="absolute left-[-28px] top-[390px] hidden sm:flex items-center gap-5 w-auto h-auto">
               <div className="relative flex justify-center items-center w-[302px]">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9a0863038cb8e3c504cd651bc5daf238e47b774?width=911"
-                  alt=""
+                  alt="Dashboard 1"
                   className="absolute top-0 w-auto h-[248px] object-cover"
                 />
               </div>
               <div className="relative flex justify-center items-center w-[302px]">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d8b68c11f2a46c485e1ccc8104a605e24105774?width=1038"
-                  alt=""
+                  alt="Dashboard 2"
                   className="absolute top-0 w-auto h-[283px] object-cover"
                 />
               </div>
               <div className="relative flex justify-center items-center w-[302px] pb-[5px]">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/36308863afe2c56dc6d6df37408bcdc58bed9655?width=911"
-                  alt=""
+                  alt="Dashboard 3"
                   className="absolute top-0 w-auto h-[248px] object-cover"
                 />
               </div>
               <div className="relative flex justify-center items-center w-[302px]">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/a54023a1e8bec76f317ea5e90818cacf10d5f9a1?width=959"
-                  alt=""
+                  alt="Dashboard 4"
                   className="absolute top-0 w-auto h-[262px] object-cover"
                 />
               </div>
             </div>
 
               {/* Left Gradient Overlay */}
-              <div className="absolute left-0 top-0 h-full w-[80px] pointer-events-none z-10 bg-gradient-to-r from-white/80 to-transparent"></div>
+              <div className="hidden sm:block absolute left-0 top-0 h-full w-[80px] pointer-events-none z-10 bg-gradient-to-r from-white/80 to-transparent"></div>
               {/* Right Gradient Overlay */}
-              <div className="absolute right-0 top-0 h-full w-[80px] pointer-events-none z-10 bg-gradient-to-l from-white/80 to-transparent"></div>
+              <div className="hidden sm:block absolute right-0 top-0 h-full w-[80px] pointer-events-none z-10 bg-gradient-to-l from-white/80 to-transparent"></div>
 
             {/* Blue Banner */}
-            <div className="absolute left-0 top-[572px] w-full h-11 bg-[#0077F7] flex items-center px-4">
-              <p className="text-[#E6F1FE] font-[Poppins] text-base leading-[150%]">
-                We believe every business deserves simple, reliable inventory
-                management that just works — so you can spend less time tracking
-                stock and more time growing sales
+            <div className="absolute left-0 top-[620px] sm:top-[572px] w-full min-h-[48px] sm:min-h-[44px] bg-[#0077F7] flex items-center px-2 sm:px-4 py-2 sm:py-0">
+              <p className="text-[#E6F1FE] font-[Poppins] text-xs sm:text-base leading-[150%] w-full text-center break-words">
+                We believe every business deserves simple, reliable inventory management that just works — so you can spend less time tracking stock and more time growing sales
               </p>
             </div>
           </div>
@@ -75,11 +183,11 @@ export default function About() {
       </div>
 
       {/* What We Stand For Section */}
-      <div className="px-6 lg:px-[7px] mt-[42px]">
+      <div className="px-4 sm:px-6 lg:px-[7px] mt-[42px]">
         <div className="max-w-[1279px] mx-auto flex flex-col items-center gap-8 py-[42px]">
           {/* Section Header */}
-          <div className="flex flex-col items-center gap-4 w-[584px]">
-            <h2 className="text-center font-[Poppins] text-[48px] font-medium italic leading-[72px] tracking-[-2.88px]">
+          <div className="flex flex-col items-center gap-4 w-full max-w-[584px]">
+            <h2 className="text-center font-[Poppins] text-[32px] sm:text-[48px] font-medium italic leading-[44px] sm:leading-[72px] tracking-[-1.5px] sm:tracking-[-2.88px]">
               <span className="text-[#080808]">What We </span>
               <span className="text-[#0077F7]">Stand For</span>
             </h2>
@@ -90,9 +198,9 @@ export default function About() {
           </div>
 
           {/* Features Grid */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
             {/* Feature 1 */}
-            <div className="w-[321.975px] p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
+            <div className="w-full sm:w-[321.975px] p-6 sm:p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
               <div className="flex items-start gap-3 w-full">
                 <div className="flex w-8 h-8 p-2 justify-center items-center rounded-full bg-[rgba(244,190,80,0.14)]">
                   <svg
@@ -111,7 +219,7 @@ export default function About() {
                   <h3 className="text-[#003268] font-[Poppins] text-base font-semibold leading-[130%] tracking-[-0.96px]">
                     Customer-first design
                   </h3>
-                  <p className="w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
+                  <p className="w-full max-w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
                     We create easy-to-use tools that tackle real issues.
                   </p>
                 </div>
@@ -119,7 +227,7 @@ export default function About() {
             </div>
 
             {/* Feature 2 */}
-            <div className="w-[321.975px] p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
+            <div className="w-full sm:w-[321.975px] p-6 sm:p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
               <div className="flex items-start gap-3 w-full">
                 <div className="flex w-8 h-8 p-2 justify-center items-center rounded-full bg-[rgba(34,158,255,0.10)]">
                   <svg
@@ -138,7 +246,7 @@ export default function About() {
                   <h3 className="text-[#003268] font-[Poppins] text-base font-semibold leading-[130%] tracking-[-0.96px]">
                     Reliable, helpful support
                   </h3>
-                  <p className="w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
+                  <p className="w-full max-w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
                     Real people ready to help, whenever you need us
                   </p>
                 </div>
@@ -146,7 +254,7 @@ export default function About() {
             </div>
 
             {/* Feature 3 */}
-            <div className="w-[321.975px] p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
+            <div className="w-full sm:w-[321.975px] p-6 sm:p-[50px_22px] flex flex-col items-start gap-[10px] rounded-lg border border-[#E6F1FE] bg-gradient-to-b from-[#E6EEF8] to-transparent">
               <div className="flex items-start gap-3 w-full">
                 <div className="flex w-8 h-8 p-2 justify-center items-center rounded-full bg-[rgba(33,150,83,0.10)]">
                   <svg
@@ -165,7 +273,7 @@ export default function About() {
                   <h3 className="text-[#003268] font-[Poppins] text-base font-semibold leading-[130%] tracking-[-0.96px]">
                     Easy to set up and use
                   </h3>
-                  <p className="w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
+                  <p className="w-full max-w-[233.975px] text-[#707275] font-[Poppins] text-base leading-[150%]">
                     No steep learning curve, get up and running in minutes.
                   </p>
                 </div>

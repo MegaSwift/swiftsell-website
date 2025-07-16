@@ -21,10 +21,10 @@ export default function Index() {
     >
 
       {/* Hero Section Container */}
-      <div className="relative mx-4 lg:mx-8 mb-16">
+      <div className="relative mx-2 sm:mx-4 lg:mx-8 mb-16 overflow-x-hidden">
         {/* Hero Section */}
         <section
-          className="relative border rounded-[32px] w-full max-w-[1222px] mx-auto px-10 py-[40px]"
+          className="relative border rounded-[32px] w-full max-w-[1222px] mx-auto px-4 sm:px-8 md:px-10 py-[32px] md:py-[40px]"
           style={{
             background: "#F3F8FF",
             borderColor: "#E6F1FE",
@@ -46,8 +46,11 @@ export default function Index() {
               >
                 <span style={{ color: "rgba(8,8,8,1)" }}>
                   Take Control of
-                  <br />
-                  Your
+                  <span className="md:hidden"> Your</span>
+                  <span className="hidden md:inline">
+                    <br />
+                    Your
+                  </span>
                 </span>
                 <span style={{ color: "rgba(0,83,180,1)" }}> Inventory</span>
               </h1>
@@ -80,40 +83,40 @@ export default function Index() {
             </div>
 
             {/* Dashboard Images with improved positioning */}
-            <div className="relative w-full flex items-center justify-center pointer-events-none select-none">
+            <div className="relative w-full flex items-center justify-center pointer-events-none select-none overflow-x-hidden">
               {/* Left faded blur overlay */}
               <div
-                className="absolute left-0 bottom-0 w-[180px] h-[220px] bg-white opacity-70 rounded-full"
+                className="hidden md:block absolute left-0 bottom-0 w-[180px] h-[220px] bg-white opacity-70 rounded-full"
                 style={{ filter: 'blur(64px)', zIndex: 2 }}
               />
               {/* Left (background) image */}
               <img
                 src={dashboard3Img}
                 alt="Dashboard image 1"
-                className="hidden md:block absolute left-0 bottom-0 w-[200px] h-[350px]"
+                className="hidden md:block absolute left-0 bottom-0 w-[120px] md:w-[200px] h-[180px] md:h-[350px]"
               />
               {/* Center (main) image */}
               <img
                 src={dashboardImg}
                 alt="Dashboard image 3"
-                className="relative w-[750px] h-[370px] ml-8 mr-36"
+                className="relative w-full max-w-[350px] sm:max-w-[500px] md:max-w-[750px] h-auto md:h-[370px] ml-0 md:ml-8 md:mr-36"
               />
               {/* Right (background) image */}
               <img
                 src={dashboard2Img}
                 alt="Dashboard image 2"
-                className="hidden md:block absolute right-0 bottom-0 w-[300px] h-[350px]"
+                className="hidden md:block absolute right-0 bottom-0 w-[180px] md:w-[300px] h-[180px] md:h-[350px]"
               />
               {/* Right faded blur overlay */}
               <div
-                className="absolute right-0 bottom-0 w-[180px] h-[220px] bg-white opacity-70 rounded-full"
+                className="hidden md:block absolute right-0 bottom-0 w-[180px] h-[220px] bg-white opacity-70 rounded-full"
                 style={{ filter: 'blur(64px)', zIndex: 2 }}
               />
             </div>
 
             {/* Blur overlays */}
             <div
-              className="absolute"
+              className="hidden md:block absolute"
               style={{
                 width: "747px",
                 height: "209px",
@@ -127,7 +130,7 @@ export default function Index() {
             />
 
             <div
-              className="absolute"
+              className="hidden md:block absolute"
               style={{
                 width: "1302px",
                 height: "215px",
