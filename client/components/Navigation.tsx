@@ -184,7 +184,8 @@ export default function Navigation() {
 
           {/* Action Buttons - Hidden on mobile */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="flex items-center gap-2 px-6 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors duration-200">
+            <button className="flex items-center gap-2 px-6 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors duration-200"
+              onClick={() => window.location.href = 'https://app.getswiftsell.com/sign-in'}>
               <svg
                 width="20"
                 height="20"
@@ -199,7 +200,8 @@ export default function Navigation() {
               </svg>
               <span className="text-sm font-medium">Log In</span>
             </button>
-            <button className="px-6 py-2 bg-[#0053B4] text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+            <button className="px-6 py-2 bg-[#0053B4] text-white rounded-lg hover:bg-blue-800 transition-colors duration-200"
+              onClick={() => window.location.href = 'https://app.getswiftsell.com/create-account'}>
               <span className="text-sm font-medium">
                 Get Started
               </span>

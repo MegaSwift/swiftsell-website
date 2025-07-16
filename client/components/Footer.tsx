@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer className="py-16 bg-blue-50">
@@ -18,7 +19,7 @@ const Footer = () => (
               className="text-gray-600 text-sm"
               style={{ fontFamily: "Poppins" }}
             >
-              Take control of your inventory
+              The all-in-one platform designed to revolutionize your sales .
             </p>
           </div>
 
@@ -66,20 +67,20 @@ const Footer = () => (
             info@getswiftsell.com
           </p>
           <div className="flex items-center gap-16">
-            <a
-              href="#"
+            <Link
+              to="/terms-used"
               className="text-gray-800 text-sm font-medium hover:text-blue-600 transition-colors"
               style={{ fontFamily: "Poppins" }}
             >
-              Terms used
-            </a>
-            <a
-              href="#"
+              Terms and Conditions
+            </Link>
+            <Link
+              to="/privacy-policy"
               className="text-gray-800 text-sm font-medium hover:text-blue-600 transition-colors"
               style={{ fontFamily: "Poppins" }}
             >
               Privacy policy
-            </a>
+            </Link>
           </div>
         </div>
       </div>
