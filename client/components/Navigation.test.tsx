@@ -1,8 +1,18 @@
+/* @vitest-environment jsdom */
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./Navigation";
-import '@testing-library/jest-dom';
+import { expect, describe, it } from "vitest";
+import * as matchers from "@testing-library/jest-dom/matchers";
+import type { TestingLibraryMatchers } from "@testing-library/jest-dom/matchers";
+expect.extend(matchers as any);
+
+declare module "vitest" {
+  interface Assertion<T = any> extends TestingLibraryMatchers<T, void> {}
+  interface AsymmetricMatchersContaining
+    extends TestingLibraryMatchers<any, void> {}
+}
 
 function PricingPage() {
   return <div>Pricing Page</div>;
